@@ -1,8 +1,10 @@
 import os
+from pathlib import Path
 from tkinter import *
 from tkinter import filedialog
 import logging
 import subprocess
+import sys
 
 
 
@@ -11,10 +13,10 @@ class Stitch:
     def __init__(self):
 
         self.__py_file_dir = os.path.dirname(os.path.realpath(__file__))
-        self.__py_file = r"\stitch.py"
-        self.__py_file_loc = self.__py_file_dir + self.__py_file
-        self.__img_file = r"\stitch.gif"
-        self.__img_file_loc = self.__py_file_dir + self.__img_file
+        self.__py_file = r"stitch.py"
+        self.__py_file_loc = str(Path(self.__py_file_dir) / self.__py_file)
+        self.__img_file = r"stitch.gif"
+        self.__img_file_loc = str(Path(self.__py_file_dir) / self.__img_file)
 
 
         # Creates the structure for the GUI with the title
@@ -109,7 +111,8 @@ class Stitch:
 
     def retrieve_ijfolder(self):
 
-        selected_path = filedialog.askopenfilename()
+        #selected_path = filedialog.askopenfilename()
+        selected_path = "/home/hajaalin/Software/Fiji.app/ImageJ-linux64"
         self.__imgj_path.set(selected_path)
 
     def retrieve_rfolder(self):
@@ -118,9 +121,10 @@ class Stitch:
         self.__rfolder.set(selected_directory)
 
         if not selected_directory == '':
-            logging.basicConfig(filename='%s/stitch.log' % selected_directory,
+            logging.basicConfig(filename='%s/stitch_RUN.log' % selected_directory,
                                 format='%(asctime)s %(levelname)-8s %(message)s',
                                 level=logging.INFO, datefmt='%d-%m-%Y %H:%M:%S')
+
 
     def ome_checked(self):
 
@@ -148,6 +152,7 @@ class Stitch:
         lab_prompt = self.__imgj_path.get() + " --ij2 --headless --console --run " + \
                      self.__py_file_loc + prompt
 
+        print(lab_prompt)
         return lab_prompt
 
     def stitch_away(self):
