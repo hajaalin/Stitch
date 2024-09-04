@@ -110,9 +110,10 @@ class Stitch:
         imglabel.grid(row=6, column=4, rowspan=6)
 
     def retrieve_ijfolder(self):
-
-        #selected_path = filedialog.askopenfilename()
-        selected_path = "/home/hajaalin/Software/Fiji.app/ImageJ-linux64"
+        # comment out this line...
+        selected_path = filedialog.askopenfilename()
+        # ... and uncomment this line to set default ImageJ location
+        #selected_path = "/path/to/Fiji.app/ImageJ-linux64"
         self.__imgj_path.set(selected_path)
 
     def retrieve_rfolder(self):
