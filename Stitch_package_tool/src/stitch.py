@@ -211,6 +211,8 @@ def ome_only_blending(aurox_dir_path, current_dirs, c_ome_path):
            "absolute_displacement_threshold=3.50 "
            "compute_overlap "
            "increase_overlap=0 "
+           "invert_x "
+           "invert_y "
            "computation_parameters=[Save computation time (but use more RAM)] "
            "image_output=[Fuse and display]" % (c_ome_path, c_ome_path))
 
